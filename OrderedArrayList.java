@@ -24,6 +24,13 @@ public class OrderedArrayList {
     return _data.size();
   }
   
+  public boolean isSorted(ArrayList<Integer> list){
+      for(int i = 0; i < _data.size() - 1; i++){
+          if(_data.get(i) > _data.get(i + 1)) return false; // If an element is greater than the element that succeeds it, then the list is not sorted - return false
+      }
+      return true; // If each element in the list is greater than the preceding element, it is sorted - return true
+  } 
+  
   public void add(int num){
         boolean isAdded = false; // Flag for breaking for-loop or appending element to the end of the list
         for(int i = 0 ; i < _data.size() && !isAdded; i++ ){
