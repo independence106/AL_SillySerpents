@@ -1,14 +1,13 @@
-// Clyde "Thluffy" Sinclair
-// APCS pd00
-// Lab02
-// 2021-12-13
+/*
+  Silly Serpents: Jason Zhou, Vansh Saboo, Tiggy, Tiffany
+  APCS PD8
+  Lab 02
+  2021-12-13
+*/
 
-/**********************************************
- * class OrderedArrayList
- * wrapper class for ArrayList
- * maintains invariant that elements are ordered (ascending)
- * (SKELETON)
- **********************************************/
+//DISCO: Collections of Integers... what if we made this an 
+//       interface and had OrderedArrayList<String>, <Integer>, <Double> etc
+//QCC:
 
 import java.util.ArrayList;
 
