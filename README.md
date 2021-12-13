@@ -9,8 +9,8 @@ Lab 02
 2021-12-13
 
 
-DISCO: Collections of Integers... what if we made this an 
-       interface and had OrderedArrayList 
+DISCO: Collections of Integers... what if we made this an
+       interface and had OrderedArrayList
        ```<String>, <Integer>, <Double>``` etc
 
 QCC:
@@ -22,5 +22,5 @@ QCC:
 * ```toString()```: returns stringified version
 * ```remove()```: removes value at given index
 * ```get()```: returns value at given index, throws ```IndexOutOfBoundsException``` is index is not valid
-* ```add()```: adds given value to appropriate index, shifts everything after it up 1, returns true
-
+* ```addLinear()```: adds given value to appropriate index, shifts everything after it up 1, returns true (Linear Search)
+* ```addBinary()```: does above but in O(log n)
