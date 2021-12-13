@@ -38,19 +38,16 @@ public class OrderedArrayList {
   }
 
   public boolean add(Integer newVal) {
-    //hmm...not clean at all...
-    boolean found = false;
+    boolean isAdded = false;
     
-    for (int i = 0; i < this.size(); i++) {
+    for (int i = 0; i < this.size() && !isAdded; i++) {
       if (newVal <= this.get(i)) {
-        found = true;
+        isAdded = true;
         _data.add(i, newVal);
-        return true;
       } 
     }
-    if (!found) {
+    if (!isAdded) {
       _data.add(newVal);
-      return true;
     }
     return true;
     
