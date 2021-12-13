@@ -95,13 +95,15 @@ public class OrderedArrayList
       if (this.get(middle) == target)
         return middle;
 
-      //checks whether or not our target value is greater than or less than the 
+      //tells whether to add to after or before the value at middle 
       if (right - left <= 1 && this.get(middle) > target) {
         return left;
       }
       if (right - left <= 1) {
         return right;
       }
+
+      //recursion
       if (this.get(middle) > target)
           return binarySearch(left, middle - 1, target);
 
@@ -116,19 +118,14 @@ public class OrderedArrayList
     OrderedArrayList Franz = new OrderedArrayList();
     // testing linear search
     // testing linear search
-    Franz.addBinary(10);
-    Franz.addBinary(15);
-    Franz.addBinary(10);
-    Franz.addBinary(7);
 
-    System.out.println(Franz);
     // testing binary search
-    /*
+    
     Franz = new OrderedArrayList();
     for( int i = 0; i < 15; i++ ) 
       Franz.addBinary( (int)( 50 * Math.random() ) );
     System.out.println( Franz );
-      =====^====================================^=========*/
+  
 
   }//end main()
 
