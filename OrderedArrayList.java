@@ -1,47 +1,135 @@
+// Clyde "Thluffy" Sinclair
+// APCS pd00
+// Lab02
+// 2021-12-13
+
+/**********************************************
+ * class OrderedArrayList
+ * wrapper class for ArrayList
+ * maintains invariant that elements are ordered (ascending)
+ * (SKELETON)
+ **********************************************/
+
 import java.util.ArrayList;
 
-public class OrderedArrayList {
+public class OrderedArrayList
+{
 
+
+  // instance of class ArrayList, holding objects of type Integer
+  // (i.e., objects of a class that implements interface Integer)
   private ArrayList<Integer> _data;
-  private int _index;
 
-  public OrderedArrayList() {
-    this._data = new ArrayList<Integer>(10);
-    this._index = 0;
+  // default constructor
+  // initializes instance variables
+  public OrderedArrayList()
+  {
+    _data = new ArrayList<Integer>();
+  }
+  
+  public String toString()
+  {
+    return _data.toString();
   }
 
-  public boolean add(int value) {
-    return true;
+  //I'm assuming at index i
+  public Integer remove( int i )
+  {
+    return _data.remove(i);
   }
-  private void expand() {
-    int[] temp = new int[ _data.length * 2 ];
-    for( int i = 0; i < _data.length; i++ ) {
-      temp[i] = _data[i];
-    }
-    _data = temp;
-  }
-  public int size() {
+
+  public int size()
+  { 
+    //check this!!
     return _data.size();
   }
-  
-  public boolean isSorted(ArrayList<Integer> list){
-      for(int i = 0; i < _data.size() - 1; i++){
-          if(_data.get(i) > _data.get(i + 1)) return false; // If an element is greater than the element that succeeds it, then the list is not sorted - return false
-      }
-      return true; // If each element in the list is greater than the preceding element, it is sorted - return true
-  } 
-  
-  public void add(int num){
-        boolean isAdded = false; // Flag for breaking for-loop or appending element to the end of the list
-        for(int i = 0 ; i < _data.size() && !isAdded; i++ ){
-            if(_data.get(i) >= num){ 
-                // At the first instance of an element being greater than or equal to than the new value, 
-              // add the value at the index of that element and set isAdded true to break the for-loop
-                _data.add(i, num);
-                isAdded = true;
-            }
-        }
-        
-        if (!isAdded) _data.add(num); // If the new value is greater than all of the elements in the list (and thus was not added) append it to the end
+
+  public Integer get( int i )
+  {
+    //needs to throw an exception !!!!
+    if (i < 0 || i >= this.size()) throw new IndexOutOfBoundsException("Out of bounds");
+    return _data.get(i);
+  }
+
+  // inserts newVal at the appropriate index
+  // maintains ascending order of elements
+  // uses a linear search to find appropriate index
+  public void addLinear(Integer newVal)
+  {
+    //hmm...not clean at all...
+    boolean found = false;
+    
+    for (int i = 0; i < this.size(); i++) {
+      if (newVal <= this.get(i)) {
+        found = true;
+        _data.add(i, newVal);
+        break;
+      } 
     }
-}
+    if (!found) {
+      _data.add(newVal);
+    }
+    
+  }
+
+  // inserts newVal at the appropriate index
+  // maintains ascending order of elements
+  // uses a binary search to find appropriate index
+  public void addBinary(Integer newVal)
+  {
+    _data.add(binarySearch(0, this.size(), newVal), newVal);
+  }	
+
+  //helper function binary search (very general)
+  //returns index at which to insert
+  public int binarySearch(int left, int right, int target) {
+      //init integer that stores the index at which we are comparing to
+      int middle = (left + right) / 2;
+
+      //checks if _data is empty
+      if (right - left == 0) {
+        return 0;
+      }
+
+      //if middle if equal to our value returns middle
+      if (this.get(middle) == target)
+        return middle;
+
+      //checks whether or not our target value is greater than or less than the 
+      if (right - left <= 1 && this.get(middle) > target) {
+        return left;
+      }
+      if (right - left <= 1) {
+        return right;
+      }
+      if (this.get(middle) > target)
+          return binarySearch(left, middle - 1, target);
+
+      return binarySearch(middle + 1, right, target);
+  }
+
+  // main method solely for testing purposes
+  public static void main( String[] args )
+  {
+    
+    
+    OrderedArrayList Franz = new OrderedArrayList();
+    // testing linear search
+    // testing linear search
+    Franz.addBinary(10);
+    Franz.addBinary(15);
+    Franz.addBinary(10);
+    Franz.addBinary(7);
+
+    System.out.println(Franz);
+    // testing binary search
+    /*
+    Franz = new OrderedArrayList();
+    for( int i = 0; i < 15; i++ ) 
+      Franz.addBinary( (int)( 50 * Math.random() ) );
+    System.out.println( Franz );
+      =====^====================================^=========*/
+
+  }//end main()
+
+}//end class OrderedArrayList
